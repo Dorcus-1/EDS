@@ -113,7 +113,7 @@ const baseColumns = [
   },
   {
     title:'Manufacturer',
-    dataIndex:'manufacturer'
+    dataIndex:'laptopManufacturer'
   },
   {
     title:'Model',
@@ -121,7 +121,7 @@ const baseColumns = [
   },
   {
     title:'SN',
-    dataIndex:'SN'
+    dataIndex:'serialNumber'
   }
 ];
 const App = () => {
