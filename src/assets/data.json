@@ -1,0 +1,62 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "nationalId": "A123456789",
+        "telephone": "+1234567890",
+        "email": "john.doe@example.com",
+        "department": "IT",
+        "position": "Software Engineer",
+        "manufacturer": "Dell",
+        "model": "XPS 13",
+        "SN": "SN1234567890"
+    },
+    {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "nationalId": "B987654321",
+        "telephone": "+0987654321",
+        "email": "jane.smith@example.com",
+        "department": "HR",
+        "position": "HR Manager",
+        "manufacturer": "HP",
+        "model": "EliteBook",
+        "SN": "SN0987654321"
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "nationalId": "C112233445",
+        "telephone": "+1122334455",
+        "email": "alice.johnson@example.com",
+        "department": "Finance",
+        "position": "Accountant",
+        "manufacturer": "Lenovo",
+        "model": "ThinkPad",
+        "SN": "SN1122334455"
+    },
+    {
+        "firstName": "Bob",
+        "lastName": "Brown",
+        "nationalId": "D556677889",
+        "telephone": "+5566778899",
+        "email": "bob.brown@example.com",
+        "department": "Marketing",
+        "position": "Marketing Specialist",
+        "manufacturer": "Apple",
+        "model": "MacBook Pro",
+        "SN": "SN5566778899"
+    },
+    {
+        "firstName": "Emily",
+        "lastName": "Davis",
+        "nationalId": "E223344556",
+        "telephone": "+2233445566",
+        "email": "emily.davis@example.com",
+        "department": "Sales",
+        "position": "Sales Executive",
+        "manufacturer": "Acer",
+        "model": "Aspire",
+        "SN": "SN2233445566"
+    }
+]
