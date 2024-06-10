@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   closestCenter,
   DndContext,
@@ -15,6 +15,11 @@ import {
   useSortable,
 } from '@dnd-kit/sortable';
 import { Table } from 'antd';
+import { api } from '../api/api';
+
+
+
+
 
 
 const DragIndexContext = createContext({
@@ -74,96 +79,9 @@ const TableHeaderCell = (props) => {
     ...dragActiveStyle(dragState, props.id),
   };
   return <th {...props} ref={setNodeRef} style={style} {...attributes} {...listeners} />;
-};
-const dataSource = [
-  {
-    
-  },
-  {
-        firstName: "John",
-        lastName: "Doe",
-        nationalId: "A123456789",
-        telephone: "+1234567890",
-        email: "john.doe@example.com",
-        department: "IT",
-        position: "Software Engineer",
-        manufacturer: "Dell",
-        model: "XPS 13",
-        SN: "SN1234567890"
-  },
-  {
-    firstName: "John",
-    lastName: "Doe",
-    nationalId: "A123456789",
-    telephone: "+1234567890",
-    email: "john.doe@example.com",
-    department: "IT",
-    position: "Software Engineer",
-    manufacturer: "Dell",
-    model: "XPS 13",
-    SN: "SN1234567890"
-  },
-  {
-    firstName: "John",
-    lastName: "Doe",
-    nationalId: "A123456789",
-    telephone: "+1234567890",
-    email: "john.doe@example.com",
-    department: "IT",
-    position: "Software Engineer",
-    manufacturer: "Dell",
-    model: "XPS 13",
-    SN: "SN1234567890"
-  },
-  {
-    firstName: "John",
-    lastName: "Doe",
-    nationalId: "A123456789",
-    telephone: "+1234567890",
-    email: "john.doe@example.com",
-    department: "IT",
-    position: "Software Engineer",
-    manufacturer: "Dell",
-    model: "XPS 13",
-    SN: "SN1234567890"
-  },
-  {
-    firstName: "John",
-    lastName: "Doe",
-    nationalId: "A123456789",
-    telephone: "+1234567890",
-    email: "john.doe@example.com",
-    department: "IT",
-    position: "Software Engineer",
-    manufacturer: "Dell",
-    model: "XPS 13",
-    SN: "SN1234567890"
-  },
-  {
-    firstName: "John",
-    lastName: "Doe",
-    nationalId: "A123456789",
-    telephone: "+1234567890",
-    email: "john.doe@example.com",
-    department: "IT",
-    position: "Software Engineer",
-    manufacturer: "Dell",
-    model: "XPS 13",
-    SN: "SN1234567890"
-  },
-  {
-    firstName: "John",
-    lastName: "Doe",
-    nationalId: "A123456789",
-    telephone: "+1234567890",
-    email: "john.doe@example.com",
-    department: "IT",
-    position: "Software Engineer",
-    manufacturer: "Dell",
-    model: "XPS 13",
-    SN: "SN1234567890"
-  },
-];
+}
+
+
 const baseColumns = [
   {
     title: 'FirstName',
@@ -253,6 +171,19 @@ const App = () => {
       direction: overIndex > activeIndex ? 'right' : 'left',
     });
   };
+  const[data,setData]=useState([])
+const getAllEmployees= async ()=>{
+  try{
+    const response =await api.get('http://localhost:9000/all/employees')
+    setData(response.data)
+  }catch(error){
+    console.log(error)
+    throw error
+  }
+}
+useEffect(()=>{
+  getAllEmployees()
+},[])
   return (
     <DndContext
       sensors={sensors}
@@ -266,7 +197,7 @@ const App = () => {
           <Table
             rowKey="key"
             columns={columns}
-            dataSource={dataSource}
+            dataSource={data}
             components={{
               header: {
                 cell: TableHeaderCell,

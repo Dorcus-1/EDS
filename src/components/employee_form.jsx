@@ -5,10 +5,7 @@ import {
   DatePicker,
   Form,
   Input,
-  InputNumber,
-  Mentions,
-  Select,
-  TreeSelect,
+
 } from 'antd';
 const { RangePicker } = DatePicker;
 const formItemLayout = {
@@ -30,6 +27,8 @@ const formItemLayout = {
   },
 };
 const EmployeeForm = () => (
+
+    
   <Form
     {...formItemLayout}
     variant="filled"
@@ -38,8 +37,8 @@ const EmployeeForm = () => (
     }}
   >
     <Form.Item
-      label="Input"
-      name="Input"
+      label="First Name"
+      name="firstName"
       rules={[
         {
           required: true,
@@ -51,8 +50,8 @@ const EmployeeForm = () => (
     </Form.Item>
 
     <Form.Item
-      label="InputNumber"
-      name="InputNumber"
+      label="Last Name"
+      name="LastName"
       rules={[
         {
           required: true,
@@ -60,16 +59,12 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <InputNumber
-        style={{
-          width: '100%',
-        }}
-      />
+      <Input/>
     </Form.Item>
 
     <Form.Item
-      label="TextArea"
-      name="TextArea"
+      label="National Id"
+      name="nationalId"
       rules={[
         {
           required: true,
@@ -77,12 +72,12 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <Input.TextArea />
+      <Input/>
     </Form.Item>
 
     <Form.Item
-      label="Mentions"
-      name="Mentions"
+      label="Telephone"
+      name="telephone"
       rules={[
         {
           required: true,
@@ -90,12 +85,12 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <Mentions />
+      <Input />
     </Form.Item>
 
     <Form.Item
-      label="Select"
-      name="Select"
+      label="Email"
+      name="email"
       rules={[
         {
           required: true,
@@ -103,12 +98,12 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <Select />
+      <Input />
     </Form.Item>
 
     <Form.Item
-      label="Cascader"
-      name="Cascader"
+      label="Department"
+      name="department"
       rules={[
         {
           required: true,
@@ -116,12 +111,12 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <Cascader />
+      <Input />
     </Form.Item>
 
     <Form.Item
-      label="TreeSelect"
-      name="TreeSelect"
+      label="Position"
+      name="position"
       rules={[
         {
           required: true,
@@ -129,12 +124,12 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <TreeSelect />
+      <Input/>
     </Form.Item>
 
     <Form.Item
-      label="DatePicker"
-      name="DatePicker"
+      label="Manufacturer"
+      name="manufacturer"
       rules={[
         {
           required: true,
@@ -142,12 +137,12 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <DatePicker />
+      <Input />
     </Form.Item>
 
     <Form.Item
-      label="RangePicker"
-      name="RangePicker"
+      label="Model"
+      name="model"
       rules={[
         {
           required: true,
@@ -155,9 +150,20 @@ const EmployeeForm = () => (
         },
       ]}
     >
-      <RangePicker />
+      <Input />
     </Form.Item>
-
+    <Form.Item
+      label="Serial Number"
+      name="SN"
+      rules={[
+        {
+          required: true,
+          message: 'Please input!',
+        },
+      ]}
+    >
+      <Input />
+    </Form.Item>  
     <Form.Item
       wrapperCol={{
         offset: 6,
