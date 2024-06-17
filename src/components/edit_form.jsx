@@ -30,14 +30,16 @@ const formItemLayout = {
   },
 };
 
-const EmployeeForm = () => {
- 
+const EditEmployeeForm = (props) => {
+  console.log("props passed : ",props);
   const [form] = Form.useForm();
 
-  const onFinish = async (values) => {
+  const onFinish = async (record) => {
     try {
-      const response = await api.post('http://localhost:9000/create/employee', values);
-      message.success('Employee data submitted successfully');
+      const response = await api.patch(`http://localhost:9000/employee/${props.record.id}`, record);
+      console.log('Hereee');
+   
+      message.success('Employee data edited successfully');
       console.log('Response:', response.data);
     } catch (error) {
       message.error('Failed to submit employee data');
@@ -51,6 +53,20 @@ const EmployeeForm = () => {
       form={form}
       onFinish={onFinish}
       style={{ maxWidth: 600 }}
+      initialValues={{
+        firstName: props.record.firstName,
+        lastName: props.record.lastName,
+        nationalId: props.record.nationalId,
+        telephone: props.record.telephone,
+        email: props.record.email,
+        department: props.record.department,
+        position: props.record.position,
+        laptopManufacturer: props.record.laptopManufacturer,
+        model: props.record.model,
+        serialNumber: props.record.serialNumber,
+        
+        
+    }}
     >
       <Form.Item
         label="First Name"
@@ -60,7 +76,7 @@ const EmployeeForm = () => {
           { required: true, message: 'Please input!' },
         ]}
       >
-        <Input />
+        <Input  />
       </Form.Item>
 
       <Form.Item
@@ -80,7 +96,7 @@ const EmployeeForm = () => {
           { required: true, message: 'Please input!' },
         ]}
       >
-        <Input />
+        <Input  />
       </Form.Item>
 
       <Form.Item
@@ -110,7 +126,7 @@ const EmployeeForm = () => {
           { required: true, message: 'Please input!' },
         ]}
       >
-        <Input />
+        <Input  />
       </Form.Item>
 
       <Form.Item
@@ -120,7 +136,7 @@ const EmployeeForm = () => {
           { required: true, message: 'Please input!' },
         ]}
       >
-        <Input />
+        <Input  />
       </Form.Item>
 
       <Form.Item
@@ -130,7 +146,7 @@ const EmployeeForm = () => {
           { required: true, message: 'Please input!' },
         ]}
       >
-        <Input />
+        <Input  />
       </Form.Item>
 
       <Form.Item
@@ -167,4 +183,4 @@ const EmployeeForm = () => {
   );
 };
 
-export default EmployeeForm;
+export default EditEmployeeForm;

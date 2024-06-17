@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaRegBell } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
+import { useSearchContext } from '../context/SearchContext';
 
 const NavBar = () => {
+  const{query,setQuery}=useSearchContext()
+  const[search,setSearch]=useState("")
+  const handleSearch=(e)=>{
+    e.preventDefault()
+    console.log("consoling ",search)
+    setQuery(search)
+    console.log(query)
+  }
   return <div style={{gridColumn:"2/3",gridRow:"-3/-2"}}  className='border border-slate-100 flex items-center justify-between'>
 <div className=" ml-8">
   <form class="max-w-md mx-auto ">   
@@ -13,8 +22,11 @@ const NavBar = () => {
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
         </div>
-        <input type="search" id="default-search" class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-600 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="Search Employees, More..." required />
-        <button type="submit" class="text-gray-500 absolute end-1.5 bottom-1.5    font-medium rounded-lg text-sm px-4 py-2  dark:hover:text-gray-900 dark:focus:ring-gray-800">Search</button>
+        <input type="search" value={search} onChange={(e)=>{
+          setSearch(e.target.value)
+
+        }} id="default-search" class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-600 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500"  placeholder="Search Employees, More..." required />
+        <button class="text-gray-500 absolute end-1.5 bottom-1.5    font-medium rounded-lg text-sm px-4 py-2  dark:hover:text-gray-900 dark:focus:ring-gray-800" onClick={handleSearch}>Search</button>
     </div>
 </form>
 </div>

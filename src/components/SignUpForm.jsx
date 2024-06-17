@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import loginIllustration from '../assets/undraw_remotely_-2-j6y.svg'
 import * as Yup from "yup";
 import axios from 'axios';
+import { message } from 'antd';
 const SignUpForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,12 +26,14 @@ const SignUpForm = () => {
             confirmPassword:confirmPassword
           };
     
-          const response = await axios.post("http://10.5.220.149:9000/user/create", user);
+          const response = await axios.post("http://localhost:9000/user/create", user);
           console.log(response.data);
+          message.success("Logged in successfully")
              navigate("/");
     
         } catch (err) {
           console.error("Error creating user", err);
+          message.error("Error creating user", err);
         }
       };
      

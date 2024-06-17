@@ -6,7 +6,7 @@ const App = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button type="primary" onClick={() => setOpen(true)} color='' >
+      <Button type="primary" onClick={() => setOpen(true)} style={{"backgroundColor":"#101540"}} >
         Add Employee
       </Button>
       <Modal

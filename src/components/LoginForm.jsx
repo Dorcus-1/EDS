@@ -5,6 +5,7 @@ import loginIllustration from '../assets/undraw_remotely_-2-j6y.svg'
 import axios from 'axios';
 import * as Yup from "yup";
 import  { unauthenticatedApi } from '../api/api';
+import { message } from 'antd';
 
 
 const LoginForm = () => {
@@ -41,6 +42,7 @@ const LoginForm = () => {
        // Set the token in the headers
        const token = response.data.token;
        localStorage.setItem('token', token);
+       message.success("Logged in successfully")
 
        // Navigate to the employee component after successful login
        navigate("/employee");
@@ -49,6 +51,7 @@ const LoginForm = () => {
      }
    } catch (error) {
      console.error("Error logging in:", error);
+     message.error("Error logging in:", error)
    }
  };
 
