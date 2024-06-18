@@ -21,11 +21,12 @@ import { useSearchContext } from '../context/SearchContext';
 
 
 
-
+// Create a context to manage the drag index state
 const DragIndexContext = createContext({
   active: 3,
   over: 3,
 });
+// Function to style the table cells during drag operations
 const dragActiveStyle = (dragState, id) => {
   const { active, over, direction } = dragState;
   // drag active style
@@ -49,6 +50,7 @@ const dragActiveStyle = (dragState, id) => {
   }
   return style;
 };
+// Component to render the table body cells with drag styles
 const TableBodyCell = (props) => {
   const dragState = useContext(DragIndexContext);
   return (
@@ -61,6 +63,7 @@ const TableBodyCell = (props) => {
     />
   );
 };
+    // Component to render the table header cells with sortable and drag styles
 const TableHeaderCell = (props) => {
   const dragState = useContext(DragIndexContext);
   const { attributes, listeners, setNodeRef, isDragging } = useSortable({
@@ -87,7 +90,7 @@ const TableHeaderCell = (props) => {
 
 
 
-
+// Define the columns for the table
 const baseColumns = [
   
     {
@@ -138,7 +141,7 @@ const App = () => {
       }),
     })),
   );
-
+ // Define the sensors for drag and drop
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -146,7 +149,7 @@ const App = () => {
       },
     }),
   );
-
+  // Handle the end of the drag operation
   const onDragEnd = ({ active, over }) => {
     if (active.id !== over?.id) {
       setColumns((prevState) => {
@@ -160,7 +163,7 @@ const App = () => {
       over: -1,
     });
   };
-
+ // Handle the drag over operati
   const onDragOver = ({ active, over }) => {
     const activeIndex = columns.findIndex((i) => i.key === active.id);
     const overIndex = columns.findIndex((i) => i.key === over?.id);
@@ -172,7 +175,7 @@ const App = () => {
   };
 
   const [data, setData] = useState([]);
-  
+   // Fetch all employees (books) from the API
   const getAllEmployees = async () => {
     try {
       const response = await api.get('http://localhost:9000/all/books');
@@ -188,8 +191,7 @@ const App = () => {
     getAllEmployees();
   }, []);
 
-  //Search
-
+   // Filter the data based on the search query
   useEffect(() => {
     if (query) {
       const arr = dataInit.filter(user => 
