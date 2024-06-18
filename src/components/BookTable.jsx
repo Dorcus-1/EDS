@@ -6,12 +6,11 @@ import Modal from './Modal';
 
 const EmployeeTable = () => {
  
-  return <div style={{gridColumn:"-2/-1",gridRow:"-2/-1"}} className='bg-gray-100 flex items-center justify-center'>
+  return <div style={{gridColumn:"-2/-1",gridRow:"-2/-1"}} className='bg-[#c8cceb] flex items-center justify-center'>
 
     <div  className="bg-white  w-[95%] h-[90%] rounded-lg flex  flex-col m-6" >
       <div className="flex h-[60px] w-full justify-between items-center">
-        <h1 className='font-medium text-xl p-4' >Employee's Laptop</h1>
-        <Modal/>    
+        <h1 className='font-medium text-xl p-4' >Books Table</h1>  
       </div>
     <App/>
     </div>

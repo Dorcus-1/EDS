@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Link, useNavigate } from "react-router-dom";
-import loginIllustration from '../assets/undraw_remotely_-2-j6y.svg'
+import loginIllustration from '../assets/undraw_books_re_8gea.svg';
 import axios from 'axios';
 import * as Yup from "yup";
 import  { unauthenticatedApi } from '../api/api';
@@ -45,7 +45,7 @@ const LoginForm = () => {
        message.success("Logged in successfully")
 
        // Navigate to the employee component after successful login
-       navigate("/employee");
+       navigate("/book");
      } else {
        console.error("Invalid response from the server");
      }
@@ -55,16 +55,16 @@ const LoginForm = () => {
    }
  };
 
-  return <div className='bg-gray-100 h-screen flex items-center '>
+  return <div className='bg-[#c8cceb] h-screen flex items-center '>
     <div style={{margin:"0 auto"}} className="bg-white w-[80%] h-[90%] rounded-lg flex">
         <div className='max-w-96  h-full flex flex-col justify-center items-center '>
-            <div className="pr-8">
+            <div className="">
             <h1 className='bold pb-4  text-[#101540] font-bold text-2xl'>Login</h1>
-            <p className='text-sm'>Welcome back please enter your details</p>
+            <p className='text-sm font-bold'>Welcome back our library management system</p>
             </div>
             <form action="" className=' p-8' onSubmit={LoginUser}>
                 <div className="flex flex-col text-sm p-4">
-                    <label htmlFor="email">Email*</label>
+                    <label htmlFor="email" className='font-bold text-base'>Email*</label>
                 <input 
                 type="text"
                 name='email' 
@@ -75,7 +75,7 @@ const LoginForm = () => {
                 </div>
               
                <div className="flex flex-col text-sm p-4">
-                    <label htmlFor="password">Password*</label>
+                    <label htmlFor="password" className='font-bold text-base'>Password*</label>
                 <input 
                 type="password"
                 name='password' 
@@ -90,17 +90,17 @@ const LoginForm = () => {
                 className='w-4'
 
                  ></input>
-               <label className='text-[14px] pr-12' >Remember me</label> 
-               <a href="" className='text-[14px] text-[#101540] font-semibold '>Forgot Password?</a>
+               <label className='text-[14px] pr-8 font-bold text-base' >Remember me</label> 
+               <a href="" className='text-[14px] text-[#101540] font-bold text-base '>Forgot Password?</a>
                </div>
 
             <button type="submit"  className='w-80 ml-2  bg-[#101540] font-medium rounded-lg text-sm   py-2.5 text-center text-white'>Login</button>
             <p className='text-sm p-2 pt-4'>Don't have an account? 
-            <Link to="/register" className="font-medium text-primary-600 hover:underline">Sign up</Link></p>
+            <Link to="/register" className=" text-primary-600 hover:underline font-bold text-base">Sign up</Link></p>
             </form>
         </div>
         <div className=" w-full  flex items-center justify-center ">
-        <img className=' w-[80%]' src={loginIllustration} alt="Login Illustration" />
+        <img className=' w-[70%]' src={loginIllustration} alt="Login Illustration" />
         </div>
     </div>
   </div>;

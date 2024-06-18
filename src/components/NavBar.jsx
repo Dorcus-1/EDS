@@ -25,7 +25,7 @@ const NavBar = () => {
         <input type="search" value={search} onChange={(e)=>{
           setSearch(e.target.value)
 
-        }} id="default-search" class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-600 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500"  placeholder="Search Employees, More..." required />
+        }} id="default-search" class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-600 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500"  placeholder="Search here, More..." required />
         <button class="text-gray-500 absolute end-1.5 bottom-1.5    font-medium rounded-lg text-sm px-4 py-2  dark:hover:text-gray-900 dark:focus:ring-gray-800" onClick={handleSearch}>Search</button>
     </div>
 </form>

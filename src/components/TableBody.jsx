@@ -15,10 +15,10 @@ import {
   SortableContext,
   useSortable,
 } from '@dnd-kit/sortable';
-import { Table, Button, message,Modal } from 'antd';
+import { Table, message } from 'antd';
 import { api } from '../api/api';
 import { useSearchContext } from '../context/SearchContext';
-import EditEmployeeForm from './edit_form';
+
 
 
 
@@ -69,11 +69,15 @@ const TableHeaderCell = (props) => {
   const style = {
     ...props.style,
     cursor: 'move',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+
     ...(isDragging
       ? {
           position: 'relative',
           zIndex: 9999,
           userSelect: 'none',
+          
         }
       : {}),
     ...dragActiveStyle(dragState, props.id),
@@ -81,104 +85,39 @@ const TableHeaderCell = (props) => {
   return <th {...props} ref={setNodeRef} style={style} {...attributes} {...listeners} />;
 }
 
-const handleEdit = async (record) => {
-  console.log("Edit", record);
-  try {
-    const response = await api.put(`http://localhost:9000/update/employee/${record.id}`, record);
-    console.log("Edit successful", response.data);
-    // Handle the successful edit, such as updating the state or displaying a success message
-  } catch (error) {
-    console.error("Error editing record", error);
-    // Handle the error, such as displaying an error message
-  }
-};
 
-const handleDelete = async (record) => {
+
+
+const baseColumns = [
   
-  console.log("Delete", record);
-  try {
-    const response = await api.delete(`http://localhost:9000/delete/employee/${record.id}`);
-  message.success("Record deleted successfully, Refresh")
-    console.log("Delete successful", response.data);
-    // Handle the successful deletion, such as updating the state or displaying a success message
-  } catch (error) {
-    console.error("Error deleting record", error);
-    // Handle the error, such as displaying an error message
-  }
-};
-
-
-const EmployeeCard=(props)=>{
-  const [open, setOpen] = useState(false);
-return <div>
-        <Button type="primary" onClick={() =>setOpen(true)} style={{"backgroundColor":"#101540"}} >
-          Edit
-        </Button>
-        <Modal
-          title="Edit Employee"
-          centered
-          open={open}
-          onOk={() => setOpen(false)}
-          onCancel={() => setOpen(false)}
-          width={1000}
-          
-        >
-          <EditEmployeeForm record={props.record}/>
-        </Modal>
-          <Button onClick={() => handleDelete(props.record)} type="danger" style={{ Color:"#101540" }}>Delete</Button>
-        </div>
-}
-
+    {
+      title: 'ID',
+      dataIndex: 'id',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Author',
+      dataIndex: 'author',
+    },
+    {
+      title: 'Publisher',
+      dataIndex: 'publisher',
+    },
+    {
+      title: 'Publication Year',
+      dataIndex: 'publicationYear',
+    },
+    {
+      title: 'Subject',
+      dataIndex: 'subject',
+    },
+  ];
 const App = () => {
 
-  const baseColumns = [
   
-    {
-      title: 'FirstName',
-      dataIndex: 'firstName',
-    },
-    {
-      title: 'LastName',
-      dataIndex: 'lastName',
-    },
-    {
-      title: 'NationalID',
-      dataIndex: 'nationalId',
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-    },
-    {
-      title: 'Telephone',
-      dataIndex: 'telephone',
-    },
-    {
-      title:'Department',
-      dataIndex:'department'
-    },
-    {
-      title:'Position',
-      dataIndex:'position'
-    },
-    {
-      title:'Manufacturer',
-      dataIndex:'laptopManufacturer'
-    },
-    {
-      title:'Model',
-      dataIndex:'model'
-    },
-    {
-      title:'SN',
-      dataIndex:'serialNumber'
-    },
-    {
-      title:'Action',
-      dataIndex:'action',
-      render: (text, record) => <EmployeeCard record={record}/>
-    }
-  ];
 
   const { query } = useSearchContext();
   const [dragIndex, setDragIndex] = useState({
@@ -236,7 +175,7 @@ const App = () => {
   
   const getAllEmployees = async () => {
     try {
-      const response = await api.get('http://localhost:9000/all/employees');
+      const response = await api.get('http://localhost:9000/all/books');
       setData(response.data);
       setDataInit(response.data);
     } catch (error) {
@@ -249,12 +188,12 @@ const App = () => {
     getAllEmployees();
   }, []);
 
+  //Search
+
   useEffect(() => {
     if (query) {
       const arr = dataInit.filter(user => 
-        user.firstName.toLowerCase().includes(query.toLowerCase()) || 
-        user.lastName.toLowerCase().includes(query.toLowerCase()) || 
-        user.email.toLowerCase().includes(query.toLowerCase())
+        user.name.toLowerCase().includes(query.toLowerCase())
       );
       console.log(arr);
       setData(arr);
