@@ -5,20 +5,20 @@ import SignUp from './pages/SignUp';
 import Book from './pages/Book';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './pages/NotFound';
-import { BrowserRouter as Router, Route, Switch,Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 
 function App() {
   return (
-   <Router>
-   <Routes>
-   <Route exact path="" element={<Login />} />
-   <Route exact path="/register" element={<SignUp />} />   
-   <Route element={<PrivateRoute/>}>
-          <Route path="/book" element={<Book/>} />
-  </Route> 
-  <Route exact path="*" element={<NotFound/>} />  
-   </Routes>
-   </Router>
+    <Router>
+      <Routes>
+        <Route exact path="" element={<Login />} />
+        <Route exact path="/register" element={<SignUp />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/book" element={<Book />} />
+        </Route>
+        <Route exact path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 

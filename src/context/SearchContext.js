@@ -3,7 +3,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 // Create a context with default values for query and setQuery
 const GlobalContext = createContext({
   query: "",
-  setQuery: () => {}
+  setQuery: () => { }
 });
 
 // Provider component to wrap around the part of the app that needs access to the search context

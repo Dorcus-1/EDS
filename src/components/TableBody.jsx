@@ -42,11 +42,11 @@ const dragActiveStyle = (dragState, id) => {
     style =
       direction === 'right'
         ? {
-            borderRight: '1px dashed gray',
-          }
+          borderRight: '1px dashed gray',
+        }
         : {
-            borderLeft: '1px dashed gray',
-          };
+          borderLeft: '1px dashed gray',
+        };
   }
   return style;
 };
@@ -63,7 +63,7 @@ const TableBodyCell = (props) => {
     />
   );
 };
-    // Component to render the table header cells with sortable and drag styles
+// Component to render the table header cells with sortable and drag styles
 const TableHeaderCell = (props) => {
   const dragState = useContext(DragIndexContext);
   const { attributes, listeners, setNodeRef, isDragging } = useSortable({
@@ -77,11 +77,11 @@ const TableHeaderCell = (props) => {
 
     ...(isDragging
       ? {
-          position: 'relative',
-          zIndex: 9999,
-          userSelect: 'none',
-          
-        }
+        position: 'relative',
+        zIndex: 9999,
+        userSelect: 'none',
+
+      }
       : {}),
     ...dragActiveStyle(dragState, props.id),
   };
@@ -92,35 +92,35 @@ const TableHeaderCell = (props) => {
 
 // Define the columns for the table
 const baseColumns = [
-  
-    {
-      title: 'ID',
-      dataIndex: 'id',
-    },
-    {
-      title: 'Name',
-      dataIndex: 'name',
-    },
-    {
-      title: 'Author',
-      dataIndex: 'author',
-    },
-    {
-      title: 'Publisher',
-      dataIndex: 'publisher',
-    },
-    {
-      title: 'Publication Year',
-      dataIndex: 'publicationYear',
-    },
-    {
-      title: 'Subject',
-      dataIndex: 'subject',
-    },
-  ];
+
+  {
+    title: 'ID',
+    dataIndex: 'id',
+  },
+  {
+    title: 'Name',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Author',
+    dataIndex: 'author',
+  },
+  {
+    title: 'Publisher',
+    dataIndex: 'publisher',
+  },
+  {
+    title: 'Publication Year',
+    dataIndex: 'publicationYear',
+  },
+  {
+    title: 'Subject',
+    dataIndex: 'subject',
+  },
+];
 const App = () => {
 
-  
+
 
   const { query } = useSearchContext();
   const [dragIndex, setDragIndex] = useState({
@@ -141,7 +141,7 @@ const App = () => {
       }),
     })),
   );
- // Define the sensors for drag and drop
+  // Define the sensors for drag and drop
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -163,7 +163,7 @@ const App = () => {
       over: -1,
     });
   };
- // Handle the drag over operati
+  // Handle the drag over operati
   const onDragOver = ({ active, over }) => {
     const activeIndex = columns.findIndex((i) => i.key === active.id);
     const overIndex = columns.findIndex((i) => i.key === over?.id);
@@ -175,7 +175,7 @@ const App = () => {
   };
 
   const [data, setData] = useState([]);
-   // Fetch all employees (books) from the API
+  // Fetch all employees (books) from the API
   const getAllEmployees = async () => {
     try {
       const response = await api.get('http://localhost:9000/all/books');
@@ -191,10 +191,10 @@ const App = () => {
     getAllEmployees();
   }, []);
 
-   // Filter the data based on the search query
+  // Filter the data based on the search query
   useEffect(() => {
     if (query) {
-      const arr = dataInit.filter(user => 
+      const arr = dataInit.filter(user =>
         user.name.toLowerCase().includes(query.toLowerCase())
       );
       console.log(arr);
@@ -208,7 +208,7 @@ const App = () => {
   console.log(data);
 
   return (
-    
+
     <DndContext
       sensors={sensors}
       modifiers={[restrictToHorizontalAxis]}
